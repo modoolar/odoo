@@ -1,0 +1,16 @@
+on:
+  schedule:
+  - cron:  "*/15 * * * *"
+  workflow_dispatch:
+
+jobs:
+  git-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: git-sync
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "odoo/odoo"
+          source_branch: "refs/remotes/source/*"
+          destination_repo: "modoolar/odoo"
+          destination_branch: "refs/heads/*"
