@@ -14,3 +14,4 @@ jobs:
           source_branch: "refs/remotes/source/*"
           destination_repo: "git@github.com:modoolar/odoo.git"
           destination_branch: "refs/heads/*"
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
