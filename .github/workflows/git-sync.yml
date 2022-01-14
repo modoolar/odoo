@@ -12,5 +12,5 @@ jobs:
         with:
           source_repo: "odoo/odoo"
           source_branch: "refs/remotes/source/*"
-          destination_repo: "modoolar/odoo"
+          destination_repo: "git@github.com:modoolar/odoo.git"
           destination_branch: "refs/heads/*"
