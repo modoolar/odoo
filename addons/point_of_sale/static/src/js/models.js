@@ -2693,6 +2693,7 @@ class Order extends PosModel {
         }
 
         var receipt = {
+            taxcore: this.fiscalReceipt,
             orderlines: orderlines,
             paymentlines: paymentlines,
             subtotal: this.get_subtotal(),

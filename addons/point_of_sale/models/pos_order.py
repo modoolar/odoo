@@ -947,6 +947,11 @@ class PosOrder(models.Model):
                 raise
         res = self.env['pos.order'].search_read(domain=[('id', 'in', order_ids)], fields=['id', 'pos_reference', 'account_move'], load=False)
         _logger.info("Finish PoS synchronisation #%d with result: %s", sync_token, res)
+        res = self.env['pos.order'].search_read(domain=[('id', 'in', order_ids)],
+                                                fields=['id', 'pos_reference', 'account_move', 'fiscal_receipt_id'],
+                                                load=False)
+        for r in res:
+            r['receipt'] = self.env['taxcore.fiscal.receipt'].search_read(domain=[('id', '=', r['fiscal_receipt_id'])], load=False)
         return res
 
     def _is_the_same_order(self, data, existing_order):

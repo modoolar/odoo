@@ -221,7 +221,7 @@ odoo.define('point_of_sale.PaymentScreen', function (require) {
                         throw { code: 401, message: 'Backend Invoice', data: { order: this.currentOrder } };
                     }
                 }
-
+                this.currentOrder.fiscalReceipt = syncOrderResult[0].receipt[0]
                 // 3. Post process.
                 if (syncOrderResult.length && this.currentOrder.wait_for_push_order()) {
                     const postPushResult = await this._postPushOrderResolve(
@@ -235,6 +235,7 @@ odoo.define('point_of_sale.PaymentScreen', function (require) {
                         });
                     }
                 }
+
             } catch (error) {
                 // unblock the UI before showing the error popup
                 this.env.services.ui.unblock();
