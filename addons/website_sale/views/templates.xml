@@ -2292,6 +2292,7 @@
                     </t>
                     <t t-if="payment_tx_id.state == 'done'">
                         <span t-if='payment_tx_id.provider_id.sudo().done_msg' t-out="payment_tx_id.provider_id.sudo().done_msg"/>
+                        <a t-att-href="order.invoice_ids.fiscal_receipt_id.verification_url">Show fiscal receipt</a>
                     </t>
                     <t t-if="payment_tx_id.state == 'done' and order.amount_total != payment_tx_id.amount">
                         <span>Unfortunately your order can not be confirmed as the amount of your payment does not match the amount of your cart.
