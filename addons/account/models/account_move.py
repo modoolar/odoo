@@ -4630,8 +4630,11 @@ class AccountMove(models.Model):
         return self._get_reconciled_amls().move_id.filtered(lambda move: move.is_invoice(include_receipts=True))
 
     def _get_all_reconciled_invoice_partials(self):
+        return self._get_all_reconciled_partials({'asset_receivable', 'liability_payable'})
+
+    def _get_all_reconciled_partials(self, account_types):
         self.ensure_one()
-        reconciled_lines = self.line_ids.filtered(lambda line: line.account_id.account_type in ('asset_receivable', 'liability_payable'))
+        reconciled_lines = self.line_ids.filtered(lambda line: line.account_id.account_type in account_types)
         if not reconciled_lines:
             return {}
 
